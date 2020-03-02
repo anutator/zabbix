@@ -3,21 +3,19 @@
 
 # v1.0 -- Sebastien Bourgeois <sb@altho.st>
 
-### Path of Asterisk binary
+### Путь к исполняемому файлу бинарника Asterisk
 ASTERISK=/usr/sbin/asterisk
 
-# Warning
+# Предупреждение
 # -------
-# This script is designed to work with our current scheme at work, one trunk
-# for incoming calls, one trunk for outgoing calls.
+# Этот скрипт разработам для текущей схемы на работе, один транк для входящих ьвызовов и один для исходящих.
 #
-# If you have only one trunk, you can deactivate the incoming/outgoing calls
-# items as they won't be relevant in your case
+# Если у вас только один транк, вы можете деактивировать элементы Входящие/Исходящие вызовы, т.к. они будут нерелевантны в вашем случае
 QUEUEINC="ctt-inc"
 QUEUEOUT="ctt-out"
 
 if [ ! -n "$1" ]; then
-    echo "Need an argument !"
+    echo "Необходим аргумент !"
     exit 1
 fi
 
