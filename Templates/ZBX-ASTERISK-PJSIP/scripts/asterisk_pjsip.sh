@@ -84,7 +84,7 @@ function status.crashes(){
 function status.reload(){
     reload_time=`$ASTERISK -rx "core show uptime seconds" | awk -F": " '/Last reload/{print$2}'`
     if [ -z "$reload_time" ];then
-        echo "Asterisk has not been reloaded yet"
+        echo "Asterisk еще не перезагружался"
     else
         printf '%dd:%dh:%dm:%ds\n' $(($reload_time/86400)) $(($reload_time%86400/3600)) $(($reload_time%3600/60)) $(($reload_time%60))
     fi
@@ -93,7 +93,7 @@ function status.reload(){
 function status.uptime(){
     uptime=`$ASTERISK -rx "core show uptime seconds" | awk -F": " '/System uptime/{print$2}'`
     if [ -z "$uptime" ];then
-        echo "Asterisk is not up"
+        echo "Asterisk не работает"
     else
         printf '%dd:%dh:%dm:%ds\n' $(($uptime/86400)) $(($uptime%86400/3600)) $(($uptime%3600/60)) $(($uptime%60))
     fi
