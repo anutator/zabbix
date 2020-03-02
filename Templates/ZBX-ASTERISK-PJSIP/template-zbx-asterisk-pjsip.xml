@@ -64,7 +64,7 @@
                     </applications>
                 </item>
                 <item>
-                    <name>Число авктивных каналов</name>
+                    <name>Число активных каналов</name>
                     <key>asterisk[channels.active]</key>
                     <delay>30s</delay>
                     <applications>
@@ -136,7 +136,7 @@
                     </applications>
                 </item>
                 <item>
-                    <name>UDP port $1 state</name>
+                    <name>Статус порта UDP номер $1</name>
                     <key>net.udp.listen[5060]</key>
                     <delay>60</delay>
                     <history>7d</history>
@@ -151,11 +151,11 @@
                     <triggers>
                         <trigger>
                             <expression>{last(0)}=0</expression>
-                            <name>SIP port not listening on {HOST.NAME}</name>
+                            <name>SIP порт не слоушает на {HOST.NAME}</name>
                             <priority>DISASTER</priority>
                             <dependencies>
                                 <dependency>
-                                    <name>No asterisk process running on {HOST.NAME}</name>
+                                    <name>Процесс asterisk не запущен на {HOST.NAME}</name>
                                     <expression>{Template App Asterisk PJSIP:proc.num[asterisk].last(0)}=0</expression>
                                 </dependency>
                             </dependencies>
@@ -163,7 +163,7 @@
                     </triggers>
                 </item>
                 <item>
-                    <name>Number of $1 processes</name>
+                    <name>Число $1 процессов</name>
                     <key>proc.num[asterisk]</key>
                     <history>7d</history>
                     <applications>
@@ -174,13 +174,13 @@
                     <triggers>
                         <trigger>
                             <expression>{last(0)}=0</expression>
-                            <name>No asterisk process running on {HOST.NAME}</name>
+                            <name>процесс asterisk не запущен на {HOST.NAME}</name>
                             <priority>DISASTER</priority>
                         </trigger>
                     </triggers>
                 </item>
                 <item>
-                    <name>Checksum of $1</name>
+                    <name>Контрольная сумма файла $1</name>
                     <key>vfs.file.cksum[/etc/asterisk/asterisk.conf]</key>
                     <delay>15m</delay>
                     <history>7d</history>
@@ -192,13 +192,13 @@
                     <triggers>
                         <trigger>
                             <expression>{diff(0)}&gt;0</expression>
-                            <name>/etc/asterisk/asterisk.conf has been changed on {HOST.NAME}</name>
+                            <name>/etc/asterisk/asterisk.conf изменен на {HOST.NAME}</name>
                             <priority>INFO</priority>
                         </trigger>
                     </triggers>
                 </item>
                 <item>
-                    <name>Checksum of $1</name>
+                    <name>Контрольная сумма файла $1</name>
                     <key>vfs.file.cksum[/etc/asterisk/extensions.conf]</key>
                     <delay>15m</delay>
                     <history>7d</history>
@@ -210,14 +210,14 @@
                     <triggers>
                         <trigger>
                             <expression>{diff(0)}&gt;0</expression>
-                            <name>/etc/asterisk/extensions.conf has been changed on {HOST.NAME}</name>
+                            <name>/etc/asterisk/extensions.conf изменен на {HOST.NAME}</name>
                             <status>DISABLED</status>
                             <priority>INFO</priority>
                         </trigger>
                     </triggers>
                 </item>
                 <item>
-                    <name>Checksum of $1</name>
+                    <name>Контрольная сумма файла $1</name>
                     <key>vfs.file.cksum[/etc/asterisk/pjsip.conf]</key>
                     <delay>15m</delay>
                     <history>7d</history>
@@ -229,21 +229,40 @@
                     <triggers>
                         <trigger>
                             <expression>{diff(0)}&gt;0</expression>
-                            <name>/etc/asterisk/sip.conf has been changed on {HOST.NAME}</name>
+                            <name>/etc/asterisk/pjsip.conf изменен на {HOST.NAME}</name>
                             <status>DISABLED</status>
                             <priority>INFO</priority>
                         </trigger>
                     </triggers>
                 </item>
+                <item>
+                    <name>Контрольная сумма файла $1</name>
+                    <key>vfs.file.cksum[/etc/asterisk/pjsip_wizard.conf]</key>
+                    <delay>15m</delay>
+                    <history>7d</history>
+                    <applications>
+                        <application>
+                            <name>Asterisk</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{diff(0)}&gt;0</expression>
+                            <name>/etc/asterisk/pjsip_wizard.conf изменен на {HOST.NAME}</name>
+                            <status>DISABLED</status>
+                            <priority>INFO</priority>
+                        </trigger>
+                    </triggers>
+                </item>   
             </items>
             <discovery_rules>
                 <discovery_rule>
-                    <name>SIP Trunks</name>
+                    <name>SIP транки</name>
                     <key>ast.pjsip.discover</key>
                     <delay>1h</delay>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Check latency of {#TRUNKNAME}</name>
+                            <name>Проверить латентность транка {#TRUNKNAME}</name>
                             <key>ast.pjsip.latency[{#TRUNKNAME}]</key>
                             <value_type>FLOAT</value_type>
                             <units>ms</units>
@@ -260,7 +279,7 @@
     </templates>
     <graphs>
         <graph>
-            <name>Active calls</name>
+            <name>Активные вызовы</name>
             <graph_items>
                 <graph_item>
                     <color>1A7C11</color>
@@ -272,7 +291,7 @@
             </graph_items>
         </graph>
         <graph>
-            <name>Active channels</name>
+            <name>Активные каналы</name>
             <graph_items>
                 <graph_item>
                     <color>0080FF</color>
@@ -284,7 +303,7 @@
             </graph_items>
         </graph>
         <graph>
-            <name>Incoming/Outgoing Calls</name>
+            <name>Входящие/Исходящие вызовы</name>
             <graph_items>
                 <graph_item>
                     <color>BF00FF</color>
@@ -304,7 +323,7 @@
             </graph_items>
         </graph>
         <graph>
-            <name>Number of processed calls</name>
+            <name>Число обрабатываемых вызовов</name>
             <graph_items>
                 <graph_item>
                     <color>26A69A</color>
