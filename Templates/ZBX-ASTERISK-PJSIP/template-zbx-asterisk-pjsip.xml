@@ -98,7 +98,7 @@
                     </valuemap>
                 </item>
                 <item>
-                    <name>Последняя перезагрузка Asterisk</name>
+                    <name>Последняя перезагрузка (reload) конфигурационных файлов Asterisk</name>
                     <key>asterisk[status.reload]</key>
                     <delay>1h</delay>
                     <history>30d</history>
