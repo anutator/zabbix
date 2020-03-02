@@ -23,7 +23,7 @@
             </applications>
             <items>
                 <item>
-                    <name>Number of active calls</name>
+                    <name>Число активных вызовов</name>
                     <key>asterisk[calls.active]</key>
                     <delay>30s</delay>
                     <applications>
@@ -33,7 +33,7 @@
                     </applications>
                 </item>
                 <item>
-                    <name>Number of incoming calls</name>
+                    <name>Число входящих вызовов</name>
                     <key>asterisk[calls.incoming]</key>
                     <delay>30</delay>
                     <applications>
@@ -43,7 +43,7 @@
                     </applications>
                 </item>
                 <item>
-                    <name>Number of outgoing calls</name>
+                    <name>Число исходящих вызовов</name>
                     <key>asterisk[calls.outgoing]</key>
                     <delay>30</delay>
                     <applications>
@@ -53,7 +53,7 @@
                     </applications>
                 </item>
                 <item>
-                    <name>Number of processed calls in Asterisk</name>
+                    <name>Число обрабатываемых вызовов на Asterisk</name>
                     <key>asterisk[calls.processed]</key>
                     <delay>5m</delay>
                     <history>30d</history>
@@ -64,7 +64,7 @@
                     </applications>
                 </item>
                 <item>
-                    <name>Number of active channels</name>
+                    <name>Число авктивных каналов</name>
                     <key>asterisk[channels.active]</key>
                     <delay>30s</delay>
                     <applications>
@@ -74,7 +74,7 @@
                     </applications>
                 </item>
                 <item>
-                    <name>Total number of SIP peers in Asterisk</name>
+                    <name>Общее число SIP пиров на Asterisk</name>
                     <key>asterisk[sip.peers]</key>
                     <delay>30</delay>
                     <history>7d</history>
@@ -85,7 +85,7 @@
                     </applications>
                 </item>
                 <item>
-                    <name>Check trunk status</name>
+                    <name>Проверить статус транка</name>
                     <key>asterisk[sip.trunk.down]</key>
                     <delay>30s</delay>
                     <applications>
@@ -98,7 +98,7 @@
                     </valuemap>
                 </item>
                 <item>
-                    <name>Asterisk last reload</name>
+                    <name>Последняя перезагрузка Asterisk</name>
                     <key>asterisk[status.reload]</key>
                     <delay>1h</delay>
                     <history>30d</history>
@@ -111,7 +111,7 @@
                     </applications>
                 </item>
                 <item>
-                    <name>Asterisk uptime</name>
+                    <name>Время работы Asterisk с момента последней перезагрузки</name>
                     <key>asterisk[status.uptime]</key>
                     <history>30d</history>
                     <trends>0</trends>
@@ -123,7 +123,7 @@
                     </applications>
                 </item>
                 <item>
-                    <name>Asterisk version</name>
+                    <name>Версия Asterisk</name>
                     <key>asterisk[status.version]</key>
                     <delay>1d</delay>
                     <history>30d</history>
