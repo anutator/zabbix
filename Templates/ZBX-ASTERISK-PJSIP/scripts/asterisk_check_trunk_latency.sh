@@ -3,11 +3,11 @@
 
 # v1.0 -- Sebastien Bourgeois <sb@altho.st>
 
-### Path of Asterisk binary
+### Путь к исполняемому файлу бинарника Asterisk
 ASTERISK=/usr/sbin/asterisk
 
 if [ ! -n "$1" ]; then
-    echo "Need an argument."
+    echo "Необходим аргумент."
     exit 1
 fi
 
