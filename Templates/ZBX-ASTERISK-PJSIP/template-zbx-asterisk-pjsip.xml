@@ -262,7 +262,7 @@
                     <delay>1h</delay>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Проверить латентность транка {#TRUNKNAME}</name>
+                            <name>Латентность транка {#TRUNKNAME}</name>
                             <key>ast.pjsip.latency[{#TRUNKNAME}]</key>
                             <value_type>FLOAT</value_type>
                             <units>ms</units>
