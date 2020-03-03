@@ -180,7 +180,7 @@
                     </triggers>
                 </item>
                 <item>
-                    <name>Контрольная сумма файла $1</name>
+                    <name>Контрольная сумма файла основных параметров Asterisk $1</name>
                     <key>vfs.file.cksum[/etc/asterisk/asterisk.conf]</key>
                     <delay>15m</delay>
                     <history>7d</history>
@@ -236,7 +236,7 @@
                     </triggers>
                 </item>
                 <item>
-                    <name>Контрольная сумма шаблонов телефонов и транков $1</name>
+                    <name>Контрольная сумма шаблонов SIP телефонов и транков $1</name>
                     <key>vfs.file.cksum[/etc/asterisk/pjsip_wizard.conf]</key>
                     <delay>15m</delay>
                     <history>7d</history>
@@ -262,7 +262,7 @@
                     <delay>1h</delay>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Латентность транка {#TRUNKNAME}</name>
+                            <name>Латентность (максимальные задержки RTT, мс) — транк {#TRUNKNAME}</name>
                             <key>ast.pjsip.latency[{#TRUNKNAME}]</key>
                             <value_type>FLOAT</value_type>
                             <units>ms</units>
