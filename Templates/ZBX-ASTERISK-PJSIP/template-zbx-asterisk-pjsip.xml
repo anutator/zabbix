@@ -198,7 +198,7 @@
                     </triggers>
                 </item>
                 <item>
-                    <name>Контрольная сумма файла $1</name>
+                    <name>Контрольная сумма плана нумерации $1</name>
                     <key>vfs.file.cksum[/etc/asterisk/extensions.conf]</key>
                     <delay>15m</delay>
                     <history>7d</history>
@@ -217,7 +217,7 @@
                     </triggers>
                 </item>
                 <item>
-                    <name>Контрольная сумма файла $1</name>
+                    <name>Контрольная сумма основных настроек SIP $1</name>
                     <key>vfs.file.cksum[/etc/asterisk/pjsip.conf]</key>
                     <delay>15m</delay>
                     <history>7d</history>
@@ -236,7 +236,7 @@
                     </triggers>
                 </item>
                 <item>
-                    <name>Контрольная сумма файла $1</name>
+                    <name>Контрольная сумма шаблонов телефонов и транков $1</name>
                     <key>vfs.file.cksum[/etc/asterisk/pjsip_wizard.conf]</key>
                     <delay>15m</delay>
                     <history>7d</history>
