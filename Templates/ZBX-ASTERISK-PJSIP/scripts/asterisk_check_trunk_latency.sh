@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# "env" для совместимости с операционными системами BSD, где bash установлен в /usr/local/bin/bash в не /bin/bash
 # Asterisk PJSIP Monitoring for Zabbix
 # v1.0 -- Sebastien Bourgeois <sb@altho.st>
 ### Путь к исполняемому файлу бинарника Asterisk
