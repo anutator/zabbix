@@ -139,7 +139,11 @@ function sip.trunk.down(){
 # Число зарегистрированных SIP телефонов
 function sip.phone.up(){
     PHONE=`$ASTERISK -rx "pjsip list contacts" | grep Contact | egrep -v 'Avail|Unavail|RTT\(ms\)'| wc -l`
-    echo $PHONE
+    if [ -n "$PHONE" ]; then
+        echo $PHONE
+    else
+        echo "1"
+    fi
 }
 
 # Число прописанных, но не зарегистрированных телефонов.
