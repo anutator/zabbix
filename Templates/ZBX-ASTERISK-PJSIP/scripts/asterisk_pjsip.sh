@@ -11,8 +11,9 @@ ASTERISK=/usr/sbin/asterisk
 # Этот скрипт разработам для текущей схемы на работе, один транк для входящих вызовов и один для исходящих.
 #
 # Если у вас только один транк, вы можете деактивировать элементы Входящие/Исходящие вызовы, т.к. они будут нерелевантны в вашем случае
-QUEUEINC="ctt-inc"
-QUEUEOUT="ctt-out"
+#QUEUEINC="ctt-inc"
+#QUEUEOUT="ctt-out"
+# Я изменила, чтобы определять число вызовов по городским линиям MTS, Beeline
 
 if [ ! -n "$1" ]; then
     echo "Необходим аргумент !"
@@ -51,13 +52,26 @@ function calls.longest(){
     fi
 }
 
-function calls.incoming(){
-    CALL=`$ASTERISK -rx "core show channels" |grep "$QUEUEINC"|wc -l`
+#function calls.incoming(){
+#    CALL=`$ASTERISK -rx "core show channels" |grep "$QUEUEINC"|wc -l`
+#    echo "$CALL"
+#}
+
+#function calls.outgoing(){
+#    CALL=`$ASTERISK -rx "core show channels" |grep "$QUEUEOUT"|wc -l`
+#    echo "$CALL"
+#}
+
+# Число вызовов через МТС
+# Имя после grep должно совпадать с именем транковой группы в Asterisk
+function calls.mts(){
+    CALL=`$ASTERISK -rx "core show channels" |grep МТС|wc -l`
     echo "$CALL"
 }
 
-function calls.outgoing(){
-    CALL=`$ASTERISK -rx "core show channels" |grep "$QUEUEOUT"|wc -l`
+# Число вызовов через Билайн
+function calls.beeline(){
+    CALL=`$ASTERISK -rx "core show channels" |grep Beeline|wc -l`
     echo "$CALL"
 }
 
