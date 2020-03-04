@@ -25,7 +25,7 @@
                 <item>
                     <name>Число активных вызовов</name>
                     <key>asterisk[calls.active]</key>
-                    <delay>30s</delay>
+                    <delay>30</delay>
                     <applications>
                         <application>
                             <name>Asterisk</name>
@@ -150,7 +150,7 @@
                     </applications>
                 </item>
                 <item>
-                    <name>Версия Asterisk (данные обновляются раз в сутки)</name>
+                    <name>Версия Asterisk</name>
                     <key>asterisk[status.version]</key>
                     <delay>1d</delay>
                     <history>30d</history>
@@ -206,6 +206,23 @@
                         </trigger>
                     </triggers>
                 </item>
+                 <item>
+                    <name>Число $1 процессов</name>
+                    <key>proc.num[httpd]</key>
+                    <history>7d</history>
+                    <applications>
+                        <application>
+                            <name>Asterisk</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{last(0)}=0</expression>
+                            <name>Процесс httpd не запущен на {HOST.NAME}</name>
+                            <priority>DISASTER</priority>
+                        </trigger>
+                    </triggers>
+                </item>    
                 <item>
                     <name>Контрольная сумма файла основных параметров Asterisk $1</name>
                     <key>vfs.file.cksum[/etc/asterisk/asterisk.conf]</key>
