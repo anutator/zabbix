@@ -117,6 +117,16 @@ function sip.trunk.down(){
     fi
 }
 
+# Число прописанных, но не зарегистрированных телефонов
+function sip.phone.down(){
+    PHONE=`$ASTERISK -rx "pjsip show endpoints" | grep Endpoint | grep Unavail | wc -l`
+    if [ -n "$PHONE" ]; then
+        echo $PHONE
+    else
+        echo "1"
+    fi
+}
+
 # Общее количество SIP пиров: зарегистрированные SIP телефоны + SIP транки (как доступные, так и недоступные)
 function sip.peers(){
     TRUNK=`$ASTERISK -rx "pjsip show endpoints" | grep Contact | egrep -v "<MaxContact|<Hash" | wc -l`
