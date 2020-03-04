@@ -103,8 +103,40 @@ function status.uptime(){
 
 # Версия Asterisk
 function status.version(){
-    version=`$ASTERISK -rx "core show version" |grep "Asterisk"|awk '{print$2}'`
+    version=`$ASTERISK -rx "core show version" |grep Asterisk|awk '{print$2}'`
     echo "$version"
+}
+
+# Общее число SIP пиров: зарегистрированные SIP телефоны + SIP транки (как доступные, так и недоступные)
+function sip.peers(){
+    TRUNK=`$ASTERISK -rx "pjsip show endpoints" | grep Contact| egrep -v "<MaxContact|<Hash" | wc -l`
+    echo $TRUNK
+}
+
+# Число SIP транковых групп в статусе Avail (доступен)
+function sip.trunk.reg(){
+    TRUNK=`$ASTERISK -rx "pjsip list contacts" | grep Avail|wc -l`
+    if [ -n "$TRUNK" ]; then
+        echo $TRUNK
+    else
+        echo "1"
+    fi
+}
+
+# Число SIP транковых групп в статусе Unavail (недоступен) 
+function sip.trunk.unreg(){
+    TRUNK=`$ASTERISK -rx "pjsip list contacts" | grep Unavail|wc -l`
+    if [ -n "$TRUNK" ]; then
+        echo $TRUNK
+    else
+        echo "1"
+    fi
+}
+
+# Число зарегистрированных SIP телефонов
+function sip.phone.reg(){
+    PHONE=`$ASTERISK -rx "pjsip list contacts" | grep Contact | egrep -v 'Avail|Unavail|RTT\(ms\)'| wc -l`
+    echo $PHONE
 }
 
 # Число прописанных, но не зарегистрированных телефонов.
@@ -116,38 +148,6 @@ function sip.phone.down(){
     else
         echo "1"
     fi
-}
-
-# Общее количество SIP пиров: зарегистрированные SIP телефоны + SIP транки (как доступные, так и недоступные)
-function sip.peers(){
-    TRUNK=`$ASTERISK -rx "pjsip show endpoints" | grep Contact| egrep -v "<MaxContact|<Hash" | wc -l`
-    echo $TRUNK
-}
-
-# Количество SIP транковых групп в статусе Avail (доступен)
-function sip.trunk.reg(){
-    TRUNK=`$ASTERISK -rx "pjsip list contacts" | grep Avail|wc -l`
-    if [ -n "$TRUNK" ]; then
-        echo $TRUNK
-    else
-        echo "1"
-    fi
-}
-
-# Число SIP транковых групп в Unavail (недоступен) 
-function sip.trunk.unreg(){
-    TRUNK=`$ASTERISK -rx "pjsip list contacts" | grep Unavail|wc -l`
-    if [ -n "$TRUNK" ]; then
-        echo $TRUNK
-    else
-        echo "1"
-    fi
-}
-
-# Количество зарегистрированных SIP телефонов
-function sip.phone.reg(){
-    PHONE=`$ASTERISK -rx "pjsip list contacts" | grep Contact | egrep -v 'Avail|Unavail|RTT\(ms\)'| wc -l`
-    echo $PHONE
 }
 
 ### Выполнить аргумент
