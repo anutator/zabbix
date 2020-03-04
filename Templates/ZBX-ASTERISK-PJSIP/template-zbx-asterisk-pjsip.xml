@@ -103,6 +103,16 @@
                             <name>Asterisk</name>
                         </application>
                     </applications>
+                    <valuemap>
+                     <name>Service state</name>
+                    </valuemap>
+                    <triggers>
+                        <trigger>
+                            <expression>{str(1)}&lt;&gt;1</expression>
+                            <name>SIP транк {ITEM.LASTVALUE} недоступен</name>
+                            <priority>DISASTER</priority>
+                        </trigger>
+                    </triggers>
                 </item>
                 <item>
                     <name>Число зарегистрированных SIP телефонов</name>
