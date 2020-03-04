@@ -163,6 +163,19 @@
                     </applications>
                 </item>
                 <item>
+                    <name>Есть ли краш-дампы в каталоге /tmp (косвенный признак проблем)</name>
+                    <key>asterisk[status.crashes]</key>
+                    <delay>1d</delay>
+                    <history>30d</history>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>Asterisk</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
                     <name>Статус порта UDP номер $1</name>
                     <key>net.udp.listen[5060]</key>
                     <delay>60</delay>
