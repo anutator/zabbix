@@ -7,5 +7,7 @@
 ### Путь к исполняемому бинарнику Asterisk
 ASTERISK=/usr/sbin/asterisk
 
-$ASTERISK -rx "pjsip show endpoints"|grep Contact|egrep -v "MaxContact|RTT\(ms\)"|awk '{print $2}'|cut -d "/" -f1 > /tmp/list
+# Сохраним в файл /tmp/list список транковых групп.
+# Внимание: здесь предполагается, что транковые группы содержат буквы, а телефоны только номера
+$ASTERISK -rx "pjsip show endpoints"|grep Contact|egrep -v "MaxContact|RTT\(ms\)"|awk '{print $2}'|cut -d "/" -f1 | grep [A-Za-z] > /tmp/list
 /usr/bin/jq -nR 'reduce inputs as $i ([]; .+[$i]) | map ({"{#TRUNKNAME}":.}) | {data: .}' /tmp/list
