@@ -84,6 +84,7 @@ function channels.active(){
 # Проверку числа запущенных процессов Asterisk через pidof asterisk удалила,
 # т.к. для Zabbix есть готовая функция proc.num[<имя>,<пользователь>,<состояние>,<cmdline>,<зона>] 
 
+# Проверка наличия core дампов в каталоге /tmp. Косвенно свидетельствует о проблемах с Asterisk
 function status.crashes(){
     if [ -n "`find /tmp/ -type f -mtime -1 -name 'core*'`" ]; then
         echo 1
