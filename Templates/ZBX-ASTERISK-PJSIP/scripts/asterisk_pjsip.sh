@@ -3,7 +3,7 @@
 
 # v1.0 -- Sebastien Bourgeois <sb@altho.st>
 
-### Путь к исполняемому файлу бинарника Asterisk
+### Абсолютный путь к исполняемому файлу бинарника Asterisk
 ASTERISK=/usr/sbin/asterisk
 
 # Предупреждение
@@ -81,6 +81,7 @@ function status.crashes(){
     fi
 }
 
+# Сколько времени прошло с момента последней перезагрузки (reload) всех или одного из файлов конфигурации 
 function status.reload(){
     reload_time=`$ASTERISK -rx "core show uptime seconds" | awk -F": " '/Last reload/{print$2}'`
     if [ -z "$reload_time" ];then
@@ -90,6 +91,7 @@ function status.reload(){
     fi
 }
 
+# Сколько времени работает Asterisk c момента последней перезагрузки
 function status.uptime(){
     uptime=`$ASTERISK -rx "core show uptime seconds" | awk -F": " '/System uptime/{print$2}'`
     if [ -z "$uptime" ];then
@@ -99,6 +101,7 @@ function status.uptime(){
     fi
 }
 
+# Версия Asterisk
 function status.version(){
     version=`$ASTERISK -rx "core show version" |grep "Asterisk"|awk '{print$2}'`
     echo "$version"
