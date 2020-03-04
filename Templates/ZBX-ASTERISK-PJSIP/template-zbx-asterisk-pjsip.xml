@@ -74,7 +74,7 @@
                     </applications>
                 </item>
                 <item>
-                    <name>Общее число SIP пиров на Asterisk</name>
+                    <name>Число зарегистрированных SIP телефонов и SIP транков (доступные + недоступные)</name>
                     <key>asterisk[sip.peers]</key>
                     <delay>30</delay>
                     <history>7d</history>
@@ -85,7 +85,17 @@
                     </applications>
                 </item>
                 <item>
-                    <name>Проверить статус транка</name>
+                    <name>Число SIP транк-групп в статусе "Доступен"</name>
+                    <key>asterisk[sip.trunk.up]</key>
+                    <delay>30s</delay>
+                    <applications>
+                        <application>
+                            <name>Asterisk</name>
+                        </application>
+                    </applications>
+                </item>
+                 <item>
+                    <name>Число SIP транк-групп в статусе "Недоступен"</name>
                     <key>asterisk[sip.trunk.down]</key>
                     <delay>30s</delay>
                     <applications>
@@ -93,14 +103,31 @@
                             <name>Asterisk</name>
                         </application>
                     </applications>
-                    <valuemap>
-                        <name>Service state</name>
-                    </valuemap>
+                </item>
+                <item>
+                    <name>Число зарегистрированных SIP телефонов</name>
+                    <key>asterisk[sip.phone.up]</key>
+                    <delay>30s</delay>
+                    <applications>
+                        <application>
+                            <name>Asterisk</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Число незарегистрированных SIP телефонов</name>
+                    <key>asterisk[sip.phone.down]</key>
+                    <delay>30s</delay>
+                    <applications>
+                        <application>
+                            <name>Asterisk</name>
+                        </application>
+                    </applications>
                 </item>
                 <item>
                     <name>Последняя перезагрузка (reload) конфигурационных файлов Asterisk</name>
                     <key>asterisk[status.reload]</key>
-                    <delay>1h</delay>
+                    <delay>15m</delay>
                     <history>30d</history>
                     <trends>0</trends>
                     <value_type>TEXT</value_type>
@@ -123,7 +150,7 @@
                     </applications>
                 </item>
                 <item>
-                    <name>Версия Asterisk</name>
+                    <name>Версия Asterisk (данные обновляются раз в сутки)</name>
                     <key>asterisk[status.version]</key>
                     <delay>1d</delay>
                     <history>30d</history>
@@ -257,7 +284,7 @@
             </items>
             <discovery_rules>
                 <discovery_rule>
-                    <name>SIP транки</name>
+                    <name>SIP транкк-группы</name>
                     <key>ast.pjsip.discover</key>
                     <delay>1h</delay>
                     <item_prototypes>
@@ -303,13 +330,13 @@
             </graph_items>
         </graph>
         <graph>
-            <name>Входящие/Исходящие вызовы</name>
+            <name>Входящие/Исходящие вызовы через операторов МТС и Билайн</name>
             <graph_items>
                 <graph_item>
                     <color>BF00FF</color>
                     <item>
                         <host>Template App Asterisk PJSIP</host>
-                        <key>asterisk[calls.incoming]</key>
+                        <key>asterisk[calls.mts]</key>
                     </item>
                 </graph_item>
                 <graph_item>
@@ -317,13 +344,13 @@
                     <color>FF8000</color>
                     <item>
                         <host>Template App Asterisk PJSIP</host>
-                        <key>asterisk[calls.outgoing]</key>
+                        <key>asterisk[calls.beeline]</key>
                     </item>
                 </graph_item>
             </graph_items>
         </graph>
         <graph>
-            <name>Число обрабатываемых вызовов</name>
+            <name>Число обработанных вызовов</name>
             <graph_items>
                 <graph_item>
                     <color>26A69A</color>
