@@ -131,10 +131,14 @@ function sip.trunk.up(){
     echo $TRUNK
 }
 
-# Число SIP транковых групп в статусе Unavail (недоступен) 
+# SIP транковые группы в статусе Unavail (недоступен) - показываем имя (в Zabbix имя будет в логе отвалившихся групп)
 function sip.trunk.down(){
-    TRUNK=`$ASTERISK -rx "pjsip list contacts" | grep Unavail|wc -l`
-    echo $TRUNK
+    TRUNK=`$ASTERISK -rx "pjsip list contacts" | grep Unavail| awk '{print$2}'`
+    if [ -n "$TRUNK" ]; then
+        echo $TRUNK
+    else
+        echo "1"
+    fi
 }
 
 # Число зарегистрированных SIP телефонов
