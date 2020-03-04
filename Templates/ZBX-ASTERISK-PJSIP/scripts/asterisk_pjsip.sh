@@ -117,7 +117,8 @@ function sip.trunk.down(){
     fi
 }
 
-# Число прописанных, но не зарегистрированных телефонов
+# Число прописанных, но не зарегистрированных телефонов.
+# Подразумевается, что внутренние телефоны это числа, т.е. не содержат букв. Имейте ввиду при настройках.
 function sip.phone.down(){
     PHONE=`$ASTERISK -rx "pjsip show endpoints" | grep -w Unavailable | awk '{print$2}' | grep -v [A-Za-z] | wc -l`
     if [ -n "$PHONE" ]; then
@@ -129,21 +130,21 @@ function sip.phone.down(){
 
 # Общее количество SIP пиров: зарегистрированные SIP телефоны + SIP транки (как доступные, так и недоступные)
 function sip.peers(){
-    TRUNK=`$ASTERISK -rx "pjsip show endpoints" | grep Contact | egrep -v "<MaxContact|<Hash" | wc -l`
+    TRUNK=`$ASTERISK -rx "pjsip show endpoints" | grep Contact| egrep -v "<MaxContact|<Hash" | wc -l`
     echo $TRUNK
 }
 
-# Количество транков в статусе Avail (доступен) или Unavail (недоступен)
-function sip.trunk.numbers(){
-    TRUNK=`$ASTERISK -rx "pjsip list contacts" | egrep 'Avail|Unavail'|wc -l`
+# Количество SIP транков в статусе Avail (доступен)
+function sip.trunk.reg(){
+    TRUNK=`$ASTERISK -rx "pjsip list contacts" | grep Avail|wc -l`
     echo $TRUNK
 }
 
 # Количество зарегистрированных SIP телефонов
-function sip.phone.numbers(){
+function sip.phone.reg(){
     PHONE=`$ASTERISK -rx "pjsip list contacts" | grep Contact | egrep -v 'Avail|Unavail|RTT\(ms\)'| wc -l`
     echo $PHONE
 }
 
-### Execute the argument
+### Выполнить аргумент
 $1
