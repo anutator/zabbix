@@ -33,8 +33,8 @@
                     </applications>
                 </item>
                 <item>
-                    <name>Число входящих вызовов</name>
-                    <key>asterisk[calls.incoming]</key>
+                    <name>Число активных входящих/исходящих вызовов через МТС</name>
+                    <key>asterisk[calls.mts]</key>
                     <delay>30</delay>
                     <applications>
                         <application>
@@ -43,8 +43,8 @@
                     </applications>
                 </item>
                 <item>
-                    <name>Число исходящих вызовов</name>
-                    <key>asterisk[calls.outgoing]</key>
+                    <name>Число активных входящих/исходящих вызовов через Билайн</name>
+                    <key>asterisk[calls.beeline]</key>
                     <delay>30</delay>
                     <applications>
                         <application>
