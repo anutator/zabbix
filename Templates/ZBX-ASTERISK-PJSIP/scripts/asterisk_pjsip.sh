@@ -117,7 +117,7 @@ function sip.peers(){
 }
 
 # Число SIP транковых групп в статусе Avail (доступен)
-function sip.trunk.reg(){
+function sip.trunk.up(){
     TRUNK=`$ASTERISK -rx "pjsip list contacts" | grep Avail|wc -l`
     if [ -n "$TRUNK" ]; then
         echo $TRUNK
@@ -137,7 +137,7 @@ function sip.trunk.down(){
 }
 
 # Число зарегистрированных SIP телефонов
-function sip.phone.reg(){
+function sip.phone.up(){
     PHONE=`$ASTERISK -rx "pjsip list contacts" | grep Contact | egrep -v 'Avail|Unavail|RTT\(ms\)'| wc -l`
     echo $PHONE
 }
