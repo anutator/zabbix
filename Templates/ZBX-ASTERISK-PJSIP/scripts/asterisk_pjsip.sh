@@ -119,7 +119,7 @@ function sip.trunk.down(){
 
 # Число прописанных, но не зарегистрированных телефонов
 function sip.phone.down(){
-    PHONE=`$ASTERISK -rx "pjsip show endpoints" | grep Endpoint | grep Unavail | wc -l`
+    PHONE=`$ASTERISK -rx "pjsip show endpoints" | grep -w Unavailable | awk '{print$2}' | grep -v [A-Za-z] | wc -l`
     if [ -n "$PHONE" ]; then
         echo $PHONE
     else
