@@ -41,5 +41,5 @@ fi
 # это время, которое требуется импульному сигналу или пакету, чтобы добраться от определенного источника до
 # определенного назначения и обратно. В контексте транковых групп это время, которое требуется чтобы сигнал попал с Астериска до ip-адреса
 # указанного в транковой группе и вернулся обратно. В отчетах будем называть Максимальнаы задержка или Latency в оригинале скрипта.
-On the Internet, an end user can determine the RTT to and from an IP (Internet Protocol) address by pinging that address. 
+# On the Internet, an end user can determine the RTT to and from an IP (Internet Protocol) address by pinging that address. 
 $ASTERISK -rx "pjsip show endpoints"|grep Contact|egrep -v "MaxContact|RTT\(ms\)"|grep "$1"|awk '{print $5}'
