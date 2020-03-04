@@ -108,7 +108,7 @@
                     </valuemap>
                     <triggers>
                         <trigger>
-                            <expression>{str(1)}&lt;&gt;1</expression>
+                            <expression>{last(0)}&lt;&gt;1</expression>
                             <name>SIP транк {ITEM.LASTVALUE} недоступен</name>
                             <priority>DISASTER</priority>
                         </trigger>
