@@ -26,7 +26,7 @@ function calls.active(){
     echo "$CALL"
 }
 
-# Число выполненных вызовов
+# Число обработанных (выполненных) вызовов
 function calls.processed(){
     CALL=`$ASTERISK -rx "core show channels" |grep "calls processed"|awk '{print$1}'`
     echo "$CALL"
