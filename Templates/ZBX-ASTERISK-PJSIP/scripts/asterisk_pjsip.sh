@@ -135,42 +135,26 @@ function sip.peers(){
 # Число SIP транковых групп в статусе Avail (доступен)
 function sip.trunk.up(){
     TRUNK=`$ASTERISK -rx "pjsip list contacts" | grep Avail|wc -l`
-    if [ -n "$TRUNK" ]; then
-        echo $TRUNK
-    else
-        echo "1"
-    fi
+    echo $TRUNK
 }
 
 # Число SIP транковых групп в статусе Unavail (недоступен) 
 function sip.trunk.down(){
     TRUNK=`$ASTERISK -rx "pjsip list contacts" | grep Unavail|wc -l`
-    if [ -n "$TRUNK" ]; then
-        echo $TRUNK
-    else
-        echo "1"
-    fi
+    echo $TRUNK
 }
 
 # Число зарегистрированных SIP телефонов
 function sip.phone.up(){
     PHONE=`$ASTERISK -rx "pjsip list contacts" | grep Contact | egrep -v 'Avail|Unavail|RTT\(ms\)'| wc -l`
-    if [ -n "$PHONE" ]; then
-        echo $PHONE
-    else
-        echo "1"
-    fi
+    echo $PHONE
 }
 
 # Число прописанных, но не зарегистрированных телефонов.
 # Подразумевается, что внутренние телефоны это числа, т.е. не содержат букв. Имейте ввиду при настройках.
 function sip.phone.down(){
     PHONE=`$ASTERISK -rx "pjsip show endpoints" | grep -w Unavailable | awk '{print$2}' | grep -v [A-Za-z] | wc -l`
-    if [ -n "$PHONE" ]; then
-        echo $PHONE
-    else
-        echo "1"
-    fi
+    echo $PHONE
 }
 
 ### Выполнить аргумент
