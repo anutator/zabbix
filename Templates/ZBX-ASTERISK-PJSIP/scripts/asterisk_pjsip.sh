@@ -59,11 +59,14 @@ function calls.outgoing(){
     echo "$CALL"
 }
 
+# Число активных каналов
 function channels.active(){
-    CHANNEL=`$ASTERISK -rx "core show channels" | grep "active channels" | awk '{print $1}'`
+    CHANNEL=`$ASTERISK -rx "core show channels" | grep "active channels" | awk '{print$1}'`
     echo "$CHANNEL"
 }
 
+# Проверяем, запущен ли процесс с именем Asterisk.
+# pidof asterisk в Linux покажет номер процесса. Если он есть, то результат равен 1, если нет, результат равен 0.
 function status(){
     proc_status='pidof asterisk'
     if [ -n "$proc_status" ]; then
