@@ -107,16 +107,6 @@ function status.version(){
     echo "$version"
 }
 
-# Число недоступных SIP транковых групп 
-function sip.trunk.down(){
-    TRUNK=`$ASTERISK -rx "pjsip show endpoints" | grep UNREACHABLE | awk '{print$1}'| grep [A-Za-z]`
-    if [ -n "$TRUNK" ]; then
-        echo $TRUNK
-    else
-        echo "1"
-    fi
-}
-
 # Число прописанных, но не зарегистрированных телефонов.
 # Подразумевается, что внутренние телефоны это числа, т.е. не содержат букв. Имейте ввиду при настройках.
 function sip.phone.down(){
@@ -134,10 +124,24 @@ function sip.peers(){
     echo $TRUNK
 }
 
-# Количество SIP транков в статусе Avail (доступен)
+# Количество SIP транковых групп в статусе Avail (доступен)
 function sip.trunk.reg(){
     TRUNK=`$ASTERISK -rx "pjsip list contacts" | grep Avail|wc -l`
-    echo $TRUNK
+    if [ -n "$TRUNK" ]; then
+        echo $TRUNK
+    else
+        echo "1"
+    fi
+}
+
+# Число SIP транковых групп в Unavail (недоступен) 
+function sip.trunk.unreg(){
+    TRUNK=`$ASTERISK -rx "pjsip list contacts" | grep Unavail|wc -l`
+    if [ -n "$TRUNK" ]; then
+        echo $TRUNK
+    else
+        echo "1"
+    fi
 }
 
 # Количество зарегистрированных SIP телефонов
