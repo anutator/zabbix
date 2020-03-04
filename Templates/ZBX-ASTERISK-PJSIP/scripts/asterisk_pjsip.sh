@@ -19,11 +19,13 @@ if [ ! -n "$1" ]; then
     exit 1
 fi
 
+# Число активных вызовов
 function calls.active(){
     CALL=`$ASTERISK -rx "core show channels" |grep "active call"|awk '{print$1}'`
     echo "$CALL"
 }
 
+# Число выполненных вызовов
 function calls.processed(){
     CALL=`$ASTERISK -rx "core show channels" |grep "calls processed"|awk '{print$1}'`
     echo "$CALL"
