@@ -103,7 +103,7 @@ function status.uptime(){
 
 # Версия Asterisk
 function status.version(){
-    version=`$ASTERISK -rx "core show version" |grep Asterisk|awk '{print$2}'`
+    version=`$ASTERISK -rx "core show version" | grep Asterisk|awk '{print$2}'`
     echo "$version"
 }
 
@@ -124,7 +124,7 @@ function sip.trunk.reg(){
 }
 
 # Число SIP транковых групп в статусе Unavail (недоступен) 
-function sip.trunk.unreg(){
+function sip.trunk.down(){
     TRUNK=`$ASTERISK -rx "pjsip list contacts" | grep Unavail|wc -l`
     if [ -n "$TRUNK" ]; then
         echo $TRUNK
