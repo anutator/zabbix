@@ -104,6 +104,7 @@ function status.version(){
     echo "$version"
 }
 
+# Число недоступных SIP транковых групп 
 function sip.trunk.down(){
     TRUNK=`$ASTERISK -rx "pjsip show endpoints" | grep UNREACHABLE | awk '{print$1}'| grep [A-Za-z]`
     if [ -n "$TRUNK" ]; then
@@ -113,9 +114,22 @@ function sip.trunk.down(){
     fi
 }
 
+# Общее количество SIP пиров: зарегистрированные SIP телефоны + SIP транки (как доступные, так и недоступные)
 function sip.peers(){
     TRUNK=`$ASTERISK -rx "pjsip show endpoints" | grep Contact | egrep -v "<MaxContact|<Hash" | wc -l`
     echo $TRUNK
+}
+
+# Количество транков в статусе Avail (доступен) или Unavail (недоступен)
+function sip.trunk.numbers(){
+    TRUNK=`$ASTERISK -rx "pjsip list contacts" | egrep 'Avail|Unavail'|wc -l`
+    echo $TRUNK
+}
+
+# Количество зарегистрированных SIP телефонов
+function sip.phone.numbers(){
+    PHONE=`$ASTERISK -rx "pjsip list contacts" | grep Contact | egrep -v 'Avail|Unavail|RTT\(ms\)'| wc -l`
+    echo $PHONE
 }
 
 ### Execute the argument
