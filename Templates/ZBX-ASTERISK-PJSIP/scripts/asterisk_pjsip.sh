@@ -2,7 +2,7 @@
 # Asterisk PJSIP Monitoring for Zabbix
 
 # v1.0 -- Sebastien Bourgeois <sb@altho.st>
-
+# Комментарии и изменения — Торопова Анна
 ### Абсолютный путь к исполняемому файлу бинарника Asterisk
 ASTERISK=/usr/sbin/asterisk
 
