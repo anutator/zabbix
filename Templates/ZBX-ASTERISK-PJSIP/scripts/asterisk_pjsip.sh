@@ -65,7 +65,7 @@ function calls.longest(){
 # Число вызовов через МТС
 # Имя после grep должно совпадать с именем транковой группы в Asterisk
 function calls.mts(){
-    CALL=`$ASTERISK -rx "core show channels" |grep МТС|wc -l`
+    CALL=`$ASTERISK -rx "core show channels" |grep MTS|wc -l`
     echo "$CALL"
 }
 
@@ -81,16 +81,8 @@ function channels.active(){
     echo "$CHANNEL"
 }
 
-# Проверяем, запущен ли процесс с именем Asterisk.
-# pidof asterisk в Linux покажет номер процесса. Если он есть, то результат равен 1, если нет, результат равен 0.
-function status(){
-    proc_status='pidof asterisk'
-    if [ -n "$proc_status" ]; then
-        echo "1"
-    else
-        echo "0"
-    fi
-}
+# Проверку числа запущенных процессов Asterisk через pidof asterisk удалила,
+# т.к. для Zabbix есть готовая функция proc.num[<имя>,<пользователь>,<состояние>,<cmdline>,<зона>] 
 
 function status.crashes(){
     if [ -n "`find /tmp/ -type f -mtime -1 -name 'core*'`" ]; then
