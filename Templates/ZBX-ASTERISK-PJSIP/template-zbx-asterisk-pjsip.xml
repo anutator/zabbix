@@ -53,7 +53,7 @@
                     </applications>
                 </item>
                 <item>
-                    <name>Число обрабатываемых вызовов на Asterisk</name>
+                    <name>Число обработанных вызовов/name>
                     <key>asterisk[calls.processed]</key>
                     <delay>5m</delay>
                     <history>30d</history>
